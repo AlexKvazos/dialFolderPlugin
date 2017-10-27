@@ -5,6 +5,7 @@ import getDefaultSettings from './lib/getDefaultSettings';
 import debounce from './lib/debounce';
 import GeneralSettings from './GeneralSettings';
 import TitleSettings from './TitleSettings';
+import ImageSettings from './ImageSettings';
 import MyPresets from './MyPresets';
 
 class Design extends React.Component {
@@ -33,14 +34,16 @@ class Design extends React.Component {
   }
 
   /**
-   * Handles saving settings and compiled css styleshet into
-   * the datastore. This function will debounce any calls made
-   * if it was called less than 600ms ago.
+   * Handle preset selection and instantly apply the new settings
+   *
+   * @param   {Object} preset Settings object
    */
-  handleSave = debounce((settings) => {
-    settings.css = getStyleSheet(settings);
+  onPresetSelect = preset => {
+    const settings = Object.assign({}, preset);
+    settings.css = getStyleSheet(preset);
     buildfire.datastore.save(settings, 'settings');
-  }, 600);
+    this.setState({ settings });
+  };
 
   /**
    * Handle settings input changes
@@ -67,16 +70,14 @@ class Design extends React.Component {
   };
 
   /**
-   * Handle preset selection and instantly apply the new settings
-   *
-   * @param   {Object} preset Settings object
+   * Handles saving settings and compiled css styleshet into
+   * the datastore. This function will debounce any calls made
+   * if it was called less than 600ms ago.
    */
-  onPresetSelect = preset => {
-    const settings = Object.assign({}, preset);
-    settings.css = getStyleSheet(preset);
+  handleSave = debounce((settings) => {
+    settings.css = getStyleSheet(settings);
     buildfire.datastore.save(settings, 'settings');
-    this.setState({ settings });
-  }
+  }, 600);
 
   render() {
     const { settings } = this.state;
@@ -97,6 +98,10 @@ class Design extends React.Component {
           </div>
           <div className='col-xs-8'>
             <TitleSettings
+              onChange={ this.onChange }
+              settings={ settings } />
+              <hr />
+            <ImageSettings
               onChange={ this.onChange }
               settings={ settings } />
           </div>

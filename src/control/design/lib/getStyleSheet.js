@@ -13,6 +13,7 @@ export default function getStyleSheet(settings) {
   + settings.textShadowBlur + 'px '
   + `rgba(${shadowColor.r},${shadowColor.g},${shadowColor.b},${settings.textShadowOpacity/100})`;
 
+  // Compute title position properties depending on alignment
   let titlePosition;
   if (settings.titleVerticalAlign === 'top') {
     titlePosition = 'top: 0;';
@@ -23,6 +24,24 @@ export default function getStyleSheet(settings) {
   }
 
   return `
+  ${settings.backgroundImage ? `
+  body {
+    background-image: url(${settings.backgroundImage});
+    background-size: cover;
+    background-position: center;
+  }
+  ` : ''}
+
+  ${settings.backgroundImageLarge ? `
+  @media (min-width: 1500px) {
+    body {
+      background-size: cover;
+      background-position: center;
+      background-image: url(${settings.backgroundImageLarge});
+    }
+  }
+  ` : ''}
+
   .column {
     width: ${100/settings.columns}%;
     float: left;

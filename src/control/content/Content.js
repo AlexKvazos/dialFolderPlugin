@@ -10,9 +10,8 @@ class Content extends React.Component {
   render() {
     return (
       <div>
-        <h3>Image Carousel</h3>
         <Carousel />
-        <h3>Text Editor</h3>
+        <br />
         <Editor />
       </div>
     );

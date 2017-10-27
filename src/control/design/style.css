@@ -1,108 +1,159 @@
 input[type="checkbox"].ios8-switch {
-    position: absolute;
-    margin: 8px 0 0 16px;
+  position: absolute;
+  margin: 8px 0 0 16px;
 }
 input[type="checkbox"].ios8-switch + label {
-    position: relative;
-    padding: 5px 0 0 50px;
-    line-height: 2.0em;
+  position: relative;
+  padding: 5px 0 0 50px;
+  line-height: 2.0em;
 }
 input[type="checkbox"].ios8-switch + label:before {
-    content: "";
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
-    width: 40px; /* x*5 */
-    height: 24px; /* x*3 */
-    border-radius: 16px; /* x*2 */
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 40px; /* x*5 */
+  height: 24px; /* x*3 */
+  border-radius: 16px; /* x*2 */
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 input[type="checkbox"].ios8-switch + label:after {
-    content: "";
-    position: absolute;
-    display: block;
-    left: 0px;
-    top: 0px;
-    width: 24px; /* x*3 */
-    height: 24px; /* x*3 */
-    border-radius: 16px; /* x*2 */
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 0px;
+  width: 24px; /* x*3 */
+  height: 24px; /* x*3 */
+  border-radius: 16px; /* x*2 */
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 input[type="checkbox"].ios8-switch + label:hover:after {
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 input[type="checkbox"].ios8-switch:checked + label:after {
-    margin-left: 16px;
+  margin-left: 16px;
 }
 input[type="checkbox"].ios8-switch:checked + label:before {
-    background: #55D069;
+  background: #55D069;
 }
 .disabled {
-    pointer-events: none;
-    opacity: 0.3;
+  pointer-events: none;
+  opacity: 0.3;
 }
 .preset-container {
-    border-bottom: 1px solid #ededed;
-    height: 100px;
-    overflow-y: auto;
+  border-bottom: 1px solid #ededed;
+  height: 100px;
+  overflow-y: auto;
 }
 
 .preset-container .preset-wrapper {
-    width: 16.66%;
-    padding: 10px;
-    display: inline-block;
+  width: 16.66%;
+  padding: 10px;
+  display: inline-block;
 }
 
 .preset-container .preset {
-    position: relative;
-    line-height: 80px;
-    height: 80px;
-    width: 100%;
-    background-color: #09A3EE;
-    color: #FFFFFF;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    border: none;
+  position: relative;
+  line-height: 80px;
+  height: 80px;
+  width: 100%;
+  background-color: #09A3EE;
+  color: #FFFFFF;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
 }
 
 .preset-container .preset.placeholder {
-    color: #09A3EE;
-    background-color: #FFFFFF;
-    border: 1px solid #09A3EE;
+  color: #09A3EE;
+  background-color: #FFFFFF;
+  border: 1px solid #09A3EE;
 }
 
 .preset-container .preset, .preset-container .preset.placeholder span.name {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .preset-container .preset span.delete {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: 10px;
-    z-index: 10;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 10px;
+  z-index: 10;
 }
 
 .preset-container .preset:not(:hover) span.delete {
-    display: none;
+  display: none;
 }
 
 .preset-container .preset span.delete:hover {
+  background-color: rgba(255,255,255,0.2);
+}
 
-    background-color: rgba(255,255,255,0.2);
+.phone {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 277px;
+  border: 6px solid #000000;
+  border-top: 30px solid #000000;
+  border-bottom: 35px solid #000000;
+  border-radius: 20px;
+  background-color: #E9ECEC;
+}
+
+.phone.lg {
+  height: 310px;
+  width: 160px;
+}
+
+.phone .empty {
+  display: block;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.phone.lg .empty {
+  padding-top: 100px;
+}
+
+.background-images-form {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.background-images-form .background-image-preview {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.background-images-form a:first-child {
+  display: block;
+  padding: 5px;
+}
+
+.background-images-form a.destroy {
+  color: #E92C0D;
 }

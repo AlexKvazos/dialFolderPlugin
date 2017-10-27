@@ -25,5 +25,9 @@ export default function getDefaultSettings() {
     textShadowColor: '#000000',
     textShadowOpacity: 60,
     textShadowBlur: 2,
+
+    imagePosition: 'background',
+    backgroundImage: '',
+    backgroundImageLarge: ''
   };
 }
