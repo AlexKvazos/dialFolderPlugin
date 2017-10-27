@@ -1,7 +1,7 @@
 import React from 'react';
-import buildfire, { components } from 'buildfire';
+import buildfire from 'buildfire';
 import data from './data';
-import ListItem from './ListItem';
+import ListItem from './components/ListItem';
 
 class Widget extends React.Component {
   constructor(props) {

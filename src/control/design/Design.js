@@ -3,10 +3,10 @@ import buildfire from 'buildfire';
 import getStyleSheet from './lib/getStyleSheet';
 import getDefaultSettings from './lib/getDefaultSettings';
 import debounce from './lib/debounce';
-import GeneralSettings from './GeneralSettings';
-import TitleSettings from './TitleSettings';
-import ImageSettings from './ImageSettings';
-import MyPresets from './MyPresets';
+import GeneralSettings from './components/GeneralSettings';
+import TitleSettings from './components/TitleSettings';
+import ImageSettings from './components/ImageSettings';
+import MyPresets from './components/MyPresets';
 
 class Design extends React.Component {
   constructor(props) {

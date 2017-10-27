@@ -1,6 +1,6 @@
 import React from 'react';
-import Carousel from './Carousel';
-import Editor from './Editor';
+import Carousel from './components/Carousel';
+import Editor from './components/Editor';
 
 class Content extends React.Component {
   constructor(props) {

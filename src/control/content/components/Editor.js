@@ -1,6 +1,6 @@
 import buildfire from 'buildfire';
 import React from 'react';
-import debounce from './lib/debounce';
+import debounce from '../lib/debounce';
 
 class Editor extends React.Component {
   constructor(props) {
