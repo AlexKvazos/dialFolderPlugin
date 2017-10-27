@@ -1,0 +1,109 @@
+input[type="checkbox"].ios8-switch {
+    position: absolute;
+    margin: 8px 0 0 16px;
+}
+input[type="checkbox"].ios8-switch + label {
+    position: relative;
+    padding: 5px 0 0 50px;
+    line-height: 2.0em;
+}
+input[type="checkbox"].ios8-switch + label:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 40px; /* x*5 */
+    height: 24px; /* x*3 */
+    border-radius: 16px; /* x*2 */
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+input[type="checkbox"].ios8-switch + label:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0px;
+    top: 0px;
+    width: 24px; /* x*3 */
+    height: 24px; /* x*3 */
+    border-radius: 16px; /* x*2 */
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+input[type="checkbox"].ios8-switch + label:hover:after {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+input[type="checkbox"].ios8-switch:checked + label:after {
+    margin-left: 16px;
+}
+input[type="checkbox"].ios8-switch:checked + label:before {
+    background: #55D069;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}
+.preset-container {
+    border-bottom: 1px solid #ededed;
+    padding: 5px 0 15px;
+    height: 100px;
+    overflow-y: auto;
+}
+
+.preset-container .preset-wrapper {
+    width: 16.66%;
+    padding: 10px;
+    display: inline-block;
+}
+
+.preset-container .preset {
+    position: relative;
+    line-height: 80px;
+    height: 80px;
+    width: 100%;
+    background-color: #09A3EE;
+    color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+.preset-container .preset.placeholder {
+    color: #09A3EE;
+    background-color: #FFFFFF;
+    border: 1px solid #09A3EE;
+}
+
+.preset-container .preset, .preset-container .preset.placeholder span.name {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.preset-container .preset span.delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.preset-container .preset:not(:hover) span.delete {
+    display: none;
+}
+
+.preset-container .preset span.delete:hover {
+
+    background-color: rgba(255,255,255,0.1);
+}
