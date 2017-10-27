@@ -10,7 +10,9 @@ class MyPresets extends React.Component {
   componentWillMount() {
     buildfire.datastore.get('presets', (err, result) => {
       if (err) return console.error(err);
-      this.setState({ presets: result.data });
+      if (result.data && result.data.length) {
+        this.setState({ presets: result.data });
+      }
     });
   }
 

@@ -67,7 +67,7 @@ class Widget extends React.Component {
       <div>
         <style>{ settings.css }</style>
         <div id='carousel' />
-        { html.length ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null }
+        { html && html.length ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null }
         { this.renderList() }
       </div>
     );

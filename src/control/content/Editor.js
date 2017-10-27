@@ -18,7 +18,9 @@ class Editor extends React.Component {
     // Load existing html contents
     buildfire.datastore.get('html', (err, result) => {
       if (err) return console.error(err);
-      editor.setContent(result.data.content);
+      if (result.data.content) {
+        editor.setContent(result.data.content);
+      }
 
       // Bind editor change/keyup events to save
       editor.on('keyup', (e) => {
