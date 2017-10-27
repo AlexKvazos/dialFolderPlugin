@@ -39,7 +39,6 @@ class Design extends React.Component {
    */
   handleSave = debounce((settings) => {
     settings.css = getStyleSheet(settings);
-    console.log('handleSave', settings);
     buildfire.datastore.save(settings, 'settings');
   }, 600);
 
@@ -73,9 +72,10 @@ class Design extends React.Component {
    * @param   {Object} preset Settings object
    */
   onPresetSelect = preset => {
-    preset.css = getStyleSheet(preset);
-    buildfire.datastore.save(preset, 'settings');
-    this.setState({ settings: preset });
+    const settings = Object.assign({}, preset);
+    settings.css = getStyleSheet(preset);
+    buildfire.datastore.save(settings, 'settings');
+    this.setState({ settings });
   }
 
   render() {

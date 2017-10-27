@@ -39,7 +39,6 @@ class Widget extends React.Component {
           this.setState({ settings: update.data });
           break;
         case 'html':
-          console.log(update);
           this.setState({ html: update.data.content });
           break;
       }

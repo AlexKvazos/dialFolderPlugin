@@ -17,7 +17,7 @@ class MyPresets extends React.Component {
   }
 
   handleAdd = () => {
-    const preset = this.props.settings;
+    const preset = Object.assign({}, this.props.settings);
     delete preset.css; // Remove generated css cache
 
     this.setState(prevState => {
