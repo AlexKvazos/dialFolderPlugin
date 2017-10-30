@@ -17,7 +17,7 @@ class Carousel extends React.Component {
     buildfire.datastore.onUpdate(update => {
       if (update.tag !== 'carousel') return;
       this.viewer.loadItems(update.data.items);
-    });
+    }, true);
   }
 
   render() {

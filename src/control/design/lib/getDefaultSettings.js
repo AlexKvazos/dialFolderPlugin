@@ -1,7 +1,6 @@
 
 export default function getDefaultSettings() {
   return {
-    layout: 'image',
     columns: 2,
 
     itemSize: 150,

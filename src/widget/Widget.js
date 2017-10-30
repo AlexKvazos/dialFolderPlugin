@@ -25,12 +25,6 @@ class Widget extends React.Component {
   }
 
   componentDidMount() {
-    // this.carousel = new components.carousel.view('#carousel', []);
-    // buildfire.datastore.get('carousel', (err, {data}) => {
-    //   if (err) return console.error(err);
-    //   this.carousel.loadItems(data.items);
-    // });
-
     this.dataListener = buildfire.datastore.onUpdate(update => {
       switch (update.tag) {
         case 'settings':
@@ -40,7 +34,7 @@ class Widget extends React.Component {
           this.setState({ html: update.data.content });
           break;
       }
-    });
+    }, true);
   }
 
   componentWillUnmount() {
