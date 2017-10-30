@@ -2,6 +2,7 @@ import React from 'react';
 import buildfire from 'buildfire';
 import data from './data';
 import ListItem from './components/ListItem';
+import Carousel from './components/Carousel';
 
 class Widget extends React.Component {
   constructor(props) {
@@ -32,9 +33,6 @@ class Widget extends React.Component {
 
     this.dataListener = buildfire.datastore.onUpdate(update => {
       switch (update.tag) {
-        case 'carousel':
-          this.carousel.loadItems(update.data.items);
-          break;
         case 'settings':
           this.setState({ settings: update.data });
           break;
@@ -65,7 +63,7 @@ class Widget extends React.Component {
     return (
       <div>
         <style>{ settings.css }</style>
-        <div id='carousel' />
+        <Carousel />
         { html && html.length ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null }
         { this.renderList() }
       </div>
