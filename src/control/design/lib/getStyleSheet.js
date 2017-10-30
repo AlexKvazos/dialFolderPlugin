@@ -30,6 +30,10 @@ export default function getStyleSheet(settings) {
     background-size: cover;
     background-position: center;
   }
+
+  h1, h2, h3, h4, h5 {
+    color: ${settings.titleColor};
+  }
   ` : ''}
 
   ${settings.backgroundImageLarge ? `

@@ -34,11 +34,11 @@ const TitleSettings = (props) => {
           </div>
           <div className={ `col-xs-3 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
-              <label>Padding</label>
+              <label>Color</label>
               <input
-                type='number'
-                name='titlePadding'
-                value={ settings.titlePadding }
+                type='color'
+                name='titleColor'
+                value={ settings.titleColor }
                 onChange={ props.onChange }
                 className='form-control' />
             </div>
@@ -60,7 +60,18 @@ const TitleSettings = (props) => {
           </div>
         </div>
         <div className='row'>
-          <div className={ `col-xs-6 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
+            <div className='form-group'>
+              <label>Padding</label>
+              <input
+                type='number'
+                name='titlePadding'
+                value={ settings.titlePadding }
+                onChange={ props.onChange }
+                className='form-control' />
+            </div>
+          </div>
+          <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Vertical Align</label>
               <select
@@ -74,7 +85,7 @@ const TitleSettings = (props) => {
               </select>
             </div>
           </div>
-          <div className={ `col-xs-6 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Horizontal Align</label>
               <select
