@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from './components/Carousel';
 import Editor from './components/Editor';
+import PluginInstance from './components/PluginInstance';
 
 class Content extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class Content extends React.Component {
         <Carousel />
         <br />
         <Editor />
+        <br />
+        <PluginInstance />
       </div>
     );
   }
