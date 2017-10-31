@@ -27,6 +27,7 @@ export default function getDefaultSettings() {
     textShadowBlur: 2,
 
     imagePosition: 'background',
+    iconSpacing: 0,
     backgroundImage: '',
     backgroundImageLarge: ''
   };

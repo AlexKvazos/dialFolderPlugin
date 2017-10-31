@@ -56,7 +56,7 @@ export default function getStyleSheet(settings) {
   }
 
   .list-item-content {
-    height: ${settings.itemSize}px;
+    ${settings.imagePosition === 'background' ? `height: ${settings.itemSize}px;` : ''}
     position: relative;
     border-radius: ${settings.itemBorderRadius}px;
     border: ${settings.itemBorderSize}px solid ${settings.itemBorderColor};
@@ -64,9 +64,9 @@ export default function getStyleSheet(settings) {
   }
 
   .list-item-content h1 {
-    position: absolute;
+    ${settings.imagePosition === 'background' ? 'position: absolute;': 'position: relative;'}
     ${titlePosition}
-    width: 100%;
+    ${settings.imagePosition === 'background' ? 'width: 100%;' : ''}
     color: #fff;
     margin: 0;
     padding: ${settings.titlePadding}px;
@@ -75,6 +75,8 @@ export default function getStyleSheet(settings) {
     text-shadow: ${textShadow};
     text-align: ${settings.titleHorizontalAlign};
     z-index: 3;
+    vertical-align: middle;
+    ${settings.imagePosition === 'icon' ? 'display: inline-block;' : ''}
   }
 
   .list-item-content .overlay {
@@ -85,7 +87,20 @@ export default function getStyleSheet(settings) {
     right: 0;
     bottom: 0;
     left: 0;
+    vertical-align: middle;
     z-index: 2;
+  }
+
+  .image-icon {
+    position: relative;
+    height: ${settings.itemSize}px;
+    width: ${settings.itemSize}px;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 3;
+    margin: ${settings.iconSpacing}px;
   }
 
   .image-background {

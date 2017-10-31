@@ -23,14 +23,26 @@ class ListItem extends React.Component {
   render() {
     const { item, settings } = this.props;
 
+    console.log(settings.imagePosition);
+
     return (
       <div className='list-item' onClick={ this.handleClick }>
+
         <div className='list-item-content'>
+          { settings.imagePosition === 'icon' ? (
+            <div
+              className='image-icon'
+              style={{ backgroundImage: `url(${item.iconUrl})` }} />
+          ) : null }
+
           { settings.showTitles ? <h1>{ item.title }</h1> : null }
           { settings.showOverlay ? <div className='overlay' /> : null }
-          <div
-            className='image-background'
-            style={{ backgroundImage: `url(${item.iconUrl})` }} />
+
+          { settings.imagePosition === 'background' ? (
+            <div
+              className='image-background'
+              style={{ backgroundImage: `url(${item.iconUrl})` }} />
+          ) : null }
         </div>
       </div>
     );

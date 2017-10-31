@@ -66,6 +66,17 @@ class ImageSettings extends React.Component {
               <option value='icon'>Icon</option>
             </select>
           </div>
+          { settings.imagePosition === 'icon' ? (
+            <div className='form-group'>
+              <label>Icon Spacing</label>
+              <input
+                type='number'
+                name='iconSpacing'
+                value={ settings.iconSpacing }
+                onChange={ this.props.onChange }
+                className='form-control' />
+            </div>
+          ) : null }
           <div className='form-group'>
             <label>Background Images</label>
             <div className='row background-images-form'>
