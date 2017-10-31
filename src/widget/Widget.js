@@ -1,13 +1,25 @@
 import React from 'react';
 import buildfire from 'buildfire';
-import data from './data';
-import ListItem from './components/ListItem';
 import Carousel from './components/Carousel';
+import PluginList from './components/PluginList';
 
 class Widget extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { data, html: '' };
+    this.state = {
+      data: [],
+      plugins: [],
+      html: ''
+    };
+  }
+
+  getPluginList() {
+    // Get plugin list
+    buildfire.datastore.getWithDynamicData('plugins', (err, { data }) => {
+      if (err) return console.error(err);
+      const plugins = data._buildfire.plugins.result.map(plugin => plugin.data);
+      this.setState({ plugins });
+    });
   }
 
   componentWillMount() {
@@ -22,6 +34,8 @@ class Widget extends React.Component {
       if (err) return console.error('Error loading layout');
       this.setState({ html: data.content });
     });
+
+    this.getPluginList();
   }
 
   componentDidMount() {
@@ -33,6 +47,9 @@ class Widget extends React.Component {
         case 'html':
           this.setState({ html: update.data.content });
           break;
+        case 'plugins':
+          this.getPluginList();
+          break;
       }
     }, true);
   }
@@ -41,17 +58,8 @@ class Widget extends React.Component {
     this.dataListener.clear();
   }
 
-  renderList() {
-    const { data, settings } = this.state;
-    return data.map((item, index) => (
-      <div className='column' key={ index }>
-        <ListItem item={ item } settings={ settings } />
-      </div>
-    ));
-  }
-
   render() {
-    const { settings, html } = this.state;
+    const { settings, html, plugins } = this.state;
     if (!settings) return null;
 
     return (
@@ -59,7 +67,7 @@ class Widget extends React.Component {
         <style>{ settings.css }</style>
         <Carousel />
         { html && html.length ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null }
-        { this.renderList() }
+        <PluginList plugins={ plugins } settings={ settings } />
       </div>
     );
   }
