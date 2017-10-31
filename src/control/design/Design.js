@@ -22,8 +22,10 @@ class Design extends React.Component {
     buildfire.datastore.get('settings', (err, {data}) => {
       if (err) return console.error(err);
 
+      console.log(data);
+
       // Save default settings if none has been saved
-      if (!data.layout || !data.css) {
+      if (!data.css) {
         const settings = getDefaultSettings();
         this.setState({ settings });
         this.handleSave(settings);
