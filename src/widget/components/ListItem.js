@@ -12,7 +12,6 @@ class ListItem extends React.Component {
 
     let folderName = item.folderName || item.pluginType.folderName;
 
-    console.log('Navigation', { item, folderName });
     buildfire.navigation.navigateTo({
       pluginId: item.pluginTypeId,
       instanceId: item.instanceId,
