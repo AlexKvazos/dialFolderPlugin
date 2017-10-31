@@ -26,9 +26,9 @@ export default function getStyleSheet(settings) {
   return `
   ${settings.backgroundImage ? `
   body {
-    background-image: url(${settings.backgroundImage});
-    background-size: cover;
-    background-position: center;
+    background-image: url(${settings.backgroundImage}) !important;
+    background-size: cover !important;
+    background-position: center !important;
   }
 
   h1, h2, h3, h4, h5, p {

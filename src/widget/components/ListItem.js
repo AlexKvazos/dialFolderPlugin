@@ -9,11 +9,14 @@ class ListItem extends React.Component {
   handleClick = () => {
     const { item } = this.props;
 
+
+    let folderName = item.folderName || item.pluginType.folderName;
+
     buildfire.navigation.navigateTo({
       pluginId: item.pluginTypeId,
       instanceId: item.instanceId,
       title: item.title,
-      folderName: item.folderName
+      folderName: folderName
     });
   }
 
