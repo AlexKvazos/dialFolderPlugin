@@ -32,7 +32,7 @@ export default function getStyleSheet(settings) {
   }
 
   h1, h2, h3, h4, h5, p {
-    color: ${settings.titleColor};
+    color: ${settings.titleColor} !important;
   }
   ` : ''}
 
