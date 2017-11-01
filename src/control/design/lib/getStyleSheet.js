@@ -30,10 +30,6 @@ export default function getStyleSheet(settings) {
     background-size: cover !important;
     background-position: center !important;
   }
-
-  h1, h2, h3, h4, h5, p {
-    color: ${settings.titleColor} !important;
-  }
   ` : ''}
 
   ${settings.backgroundImageLarge ? `
@@ -45,6 +41,10 @@ export default function getStyleSheet(settings) {
     }
   }
   ` : ''}
+
+  h1, h2, h3, h4, h5, p {
+    color: ${settings.titleColor} !important;
+  }
 
   .column {
     width: ${100/settings.columns}%;
