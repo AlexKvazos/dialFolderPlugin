@@ -19,7 +19,7 @@ export default function getStyleSheet(settings) {
     titlePosition = 'top: 0;';
   } else if (settings.titleVerticalAlign === 'bottom') {
     titlePosition = 'bottom: 0;';
-  } else if (settings.titleVerticalAlign === 'middle') {
+  } else if (settings.titleVerticalAlign === 'middle' && settings.imagePosition === 'background') {
     titlePosition = 'top: 50%;\ntransform: translateY(-50%);';
   }
 

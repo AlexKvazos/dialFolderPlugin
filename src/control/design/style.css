@@ -50,7 +50,7 @@ input[type="checkbox"].ios8-switch:checked + label:before {
 }
 .preset-container {
   border-bottom: 1px solid #ededed;
-  height: 100px;
+  height: 60px;
   overflow-y: auto;
 }
 
@@ -63,7 +63,7 @@ input[type="checkbox"].ios8-switch:checked + label:before {
 .preset-container .preset {
   position: relative;
   line-height: 80px;
-  height: 80px;
+  height: 40px;
   width: 100%;
   background-color: #09A3EE;
   color: #FFFFFF;

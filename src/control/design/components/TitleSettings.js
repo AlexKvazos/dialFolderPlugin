@@ -4,6 +4,7 @@ const TitleSettings = (props) => {
   const { settings } = props;
 
   return (
+
     <div>
       <h3>Titles</h3>
       <form onSubmit={ e => e.preventDefault() }>
@@ -71,7 +72,7 @@ const TitleSettings = (props) => {
                 className='form-control' />
             </div>
           </div>
-          <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-4 ${!settings.showTitles || settings.imagePosition === 'icon' ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Vertical Align</label>
               <select
@@ -85,7 +86,7 @@ const TitleSettings = (props) => {
               </select>
             </div>
           </div>
-          <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-4 ${!settings.showTitles || settings.imagePosition === 'icon' ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Horizontal Align</label>
               <select
@@ -121,11 +122,12 @@ const TitleSettings = (props) => {
             </div>
             <div className='col-xs-2'>
               <input
-                type='number'
+                type='range'
+                min='0'
+                max='100'
                 name='textShadowOpacity'
                 value={ settings.textShadowOpacity }
-                onChange={ props.onChange }
-                className='form-control' />
+                onChange={ props.onChange } />
             </div>
             <div className='col-xs-2'>
               <input
@@ -163,11 +165,12 @@ const TitleSettings = (props) => {
             <div className='form-group'>
               <label>Overlay Opacity</label>
               <input
-                type='number'
+                type='range'
+                min='0'
+                max='100'
                 name='overlayOpacity'
                 value={ settings.overlayOpacity }
-                onChange={ props.onChange }
-                className='form-control'/>
+                onChange={ props.onChange } />
             </div>
           </div>
           <div className={ `col-xs-4 ${!settings.showOverlay ? 'disabled' : ''}` }>

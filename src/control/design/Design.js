@@ -56,7 +56,7 @@ class Design extends React.Component {
       let value;
       if (e.target.type === 'checkbox') {
         value = e.target.checked;
-      } else if (e.target.type === 'number') {
+      } else if (e.target.type === 'number' || e.target.type === 'range') {
         value = parseFloat(e.target.value);
       } else {
         value = e.target.value;

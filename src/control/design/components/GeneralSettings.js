@@ -8,13 +8,14 @@ const GeneralSettings = (props) => {
       <h3>General</h3>
       <form onSubmit={ e => e.preventDefault() }>
         <div className='form-group'>
-          <label>Columns</label>
+          <label>Columns ({ settings.columns })</label>
           <input
-            type='number'
+            type='range'
+            min="1"
+            max="4"
             name='columns'
             value={ settings.columns }
-            onChange={ props.onChange }
-            className='form-control'/>
+            onChange={ props.onChange } />
         </div>
         <div className='form-group'>
           <label>Item Size</label>
