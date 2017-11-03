@@ -1,3 +1,7 @@
+input[type=range] {
+  height: 34px;
+  vertical-align: middle;
+}
 input[type="checkbox"].ios8-switch {
   position: absolute;
   margin: 8px 0 0 16px;
@@ -55,7 +59,6 @@ input[type="checkbox"].ios8-switch:checked + label:before {
 }
 
 .preset-container .preset-wrapper {
-  width: 16.66%;
   padding: 10px;
   display: inline-block;
 }
@@ -73,19 +76,13 @@ input[type="checkbox"].ios8-switch:checked + label:before {
   border: none;
 }
 
-.preset-container .preset.placeholder {
-  color: #09A3EE;
-  background-color: #FFFFFF;
-  border: 1px solid #09A3EE;
-}
-
 .preset-container .preset, .preset-container .preset.placeholder span.name {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
 }
 
-.preset-container .preset span.delete {
+.preset-container .btn span.delete {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -98,11 +95,16 @@ input[type="checkbox"].ios8-switch:checked + label:before {
   z-index: 10;
 }
 
-.preset-container .preset:not(:hover) span.delete {
+.preset-wrapper .btn.btn-primary {
+  position: relative;
+  padding-right: 30px;
+}
+
+.preset-container .btn:not(:hover) span.delete {
   display: none;
 }
 
-.preset-container .preset span.delete:hover {
+.preset-container .btn span.delete:hover {
   background-color: rgba(255,255,255,0.2);
 }
 

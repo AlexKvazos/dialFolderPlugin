@@ -18,40 +18,48 @@ const GeneralSettings = (props) => {
             onChange={ props.onChange } />
         </div>
         <div className='form-group'>
-          <label>Item Size</label>
+          <label>Item Height ({ settings.itemSize }px)</label>
           <input
-            type='number'
+            type='range'
+            min='50'
+            max='400'
             name='itemSize'
             value={ settings.itemSize }
             onChange={ props.onChange }
-            className='form-control' />
+            className='' />
         </div>
         <div className='form-group'>
-          <label>Item Spacing</label>
+          <label>Item Spacing ({ settings.itemSpacing }px)</label>
           <input
-            type='number'
+            type='range'
+            min='0'
+            max='40'
             name='itemSpacing'
             onChange={ props.onChange }
             value={ settings.itemSpacing }
-            className='form-control'/>
+            className=''/>
         </div>
         <div className='form-group'>
-          <label>Border Radius</label>
+          <label>Border Radius ({settings.itemBorderRadius}px)</label>
           <input
-            type='number'
+            type='range'
+            min='0'
+            max={settings.itemSize}
             name='itemBorderRadius'
             onChange={ props.onChange }
             value={ settings.itemBorderRadius }
-            className='form-control' />
+            className='' />
         </div>
         <div className='form-group'>
-          <label>Border Size</label>
+          <label>Border Size ({settings.itemBorderSize}px)</label>
           <input
-            type='number'
+            type='range'
+            min='0'
+            max='10'
             name='itemBorderSize'
             onChange={ props.onChange }
             value={ settings.itemBorderSize }
-            className='form-control' />
+            className='' />
         </div>
         <div className='form-group'>
           <label>Border Color</label>

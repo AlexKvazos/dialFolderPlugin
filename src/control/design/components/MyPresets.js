@@ -52,7 +52,7 @@ class MyPresets extends React.Component {
             { presets.map((preset, index) => (
               <div className='preset-wrapper' key={ index }>
                 <button
-                  className='preset'
+                  className='btn btn-primary'
                   onClick={ () => this.props.onPresetSelect(preset) }>
                   <span onClick={ (e) => this.handleDelete(e, index) } className='delete'>
                     x
@@ -64,7 +64,7 @@ class MyPresets extends React.Component {
               </div>
             )) }
             <div className='preset-wrapper'>
-              <button className='preset placeholder' onClick={ this.handleAdd }>
+              <button className='btn btn-success' onClick={ this.handleAdd }>
                 <span className='name'>+ Add</span>
               </button>
             </div>

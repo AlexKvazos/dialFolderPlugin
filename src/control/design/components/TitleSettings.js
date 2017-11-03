@@ -63,13 +63,14 @@ const TitleSettings = (props) => {
         <div className='row'>
           <div className={ `col-xs-4 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
-              <label>Padding</label>
+              <label>Padding ({settings.titlePadding}px)</label>
               <input
-                type='number'
+                type='range'
+                min='0'
+                max={settings.itemSize * .4}
                 name='titlePadding'
                 value={ settings.titlePadding }
-                onChange={ props.onChange }
-                className='form-control' />
+                onChange={ props.onChange } />
             </div>
           </div>
           <div className={ `col-xs-4 ${!settings.showTitles || settings.imagePosition === 'icon' ? 'disabled' : ''}` }>
@@ -102,9 +103,10 @@ const TitleSettings = (props) => {
           </div>
         </div>
         <div className={ `form-group ${!settings.showTitles ? 'disabled' : ''}` }>
-          <label>Text Shadow (X, Y, Opacity, Blur, Color)</label>
+          <label>Text Shadow</label>
           <div className='row'>
             <div className='col-xs-2'>
+              <label>X-Offset</label>
               <input
                 type='number'
                 name='textShadowX'
@@ -113,6 +115,7 @@ const TitleSettings = (props) => {
                 className='form-control' />
             </div>
             <div className='col-xs-2'>
+              <label>Y-Offset</label>
               <input
                 type='number'
                 name='textShadowY'
@@ -120,7 +123,8 @@ const TitleSettings = (props) => {
                 onChange={ props.onChange }
                 className='form-control' />
             </div>
-            <div className='col-xs-2'>
+            <div className='col-xs-3'>
+              <label>Opacity</label>
               <input
                 type='range'
                 min='0'
@@ -129,15 +133,18 @@ const TitleSettings = (props) => {
                 value={ settings.textShadowOpacity }
                 onChange={ props.onChange } />
             </div>
-            <div className='col-xs-2'>
+            <div className='col-xs-3'>
+              <label>Blur</label>
               <input
-                type='number'
+                type='range'
+                min='0'
+                max='5'
                 name='textShadowBlur'
                 value={ settings.textShadowBlur }
-                onChange={ props.onChange }
-                className='form-control' />
+                onChange={ props.onChange } />
             </div>
-            <div className='col-xs-4'>
+            <div className='col-xs-2'>
+              <label>Color</label>
               <input
                 type='color'
                 name='textShadowColor'
