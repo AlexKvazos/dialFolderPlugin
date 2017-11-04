@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
+import { Lazy } from 'react-lazy';
 
 class PluginList extends React.Component {
 
@@ -9,9 +10,11 @@ class PluginList extends React.Component {
     return (
       <div>
         { plugins.map((item, index) => (
-          <div className='column' key={ index }>
-            <ListItem item={ item } settings={ settings } />
-          </div>
+            <div className='column' key={ index } >
+              <Lazy height={ settings.itemSize }>
+                <ListItem item={ item } settings={ settings } />
+              </Lazy>
+            </div>
         )) }
       </div>
     );

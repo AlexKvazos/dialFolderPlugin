@@ -22,8 +22,7 @@ class ListItem extends React.Component {
 
   render() {
     const { item, settings } = this.props;
-
-    console.log(settings.imagePosition);
+    if (!settings) return null;
 
     return (
       <div className='list-item' onClick={ this.handleClick }>
