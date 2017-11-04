@@ -48,11 +48,14 @@ export default function getStyleSheet(settings) {
 
   .column {
     width: ${100/settings.columns}%;
-    float: left;
+    display: inline-block;
+    min-height: ${settings.itemSize}px;
   }
 
   .list-item {
     padding: ${settings.itemSpacing}px;
+    display: block;
+    min-height: ${settings.itemSize}px;
   }
 
   .list-item-content {

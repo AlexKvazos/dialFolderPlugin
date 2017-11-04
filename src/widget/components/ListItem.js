@@ -25,7 +25,7 @@ class ListItem extends React.Component {
     if (!settings) return null;
 
     return (
-      <div className='list-item' onClick={ this.handleClick }>
+      <div className='list-item' onClick={ this.handleClick } ref={ n => this.n = n }>
 
         <div className='list-item-content'>
           { settings.imagePosition === 'icon' ? (
