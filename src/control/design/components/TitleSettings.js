@@ -22,7 +22,7 @@ const TitleSettings = (props) => {
               <label htmlFor='title-checkbox' />
             </div>
           </div>
-          <div className={ `col-xs-2 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-3 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Size</label>
               <input
@@ -33,7 +33,7 @@ const TitleSettings = (props) => {
                 className='form-control' />
             </div>
           </div>
-          <div className={ `col-xs-3 ${!settings.showTitles ? 'disabled' : ''}` }>
+          <div className={ `col-xs-2 ${!settings.showTitles ? 'disabled' : ''}` }>
             <div className='form-group'>
               <label>Color</label>
               <input
@@ -105,7 +105,7 @@ const TitleSettings = (props) => {
         <div className={ `form-group ${!settings.showTitles ? 'disabled' : ''}` }>
           <label>Text Shadow</label>
           <div className='row'>
-            <div className='col-xs-2'>
+            <div className='col-xs-6'>
               <label>X-Offset</label>
               <input
                 type='number'
@@ -114,7 +114,7 @@ const TitleSettings = (props) => {
                 onChange={ props.onChange }
                 className='form-control' />
             </div>
-            <div className='col-xs-2'>
+            <div className='col-xs-6'>
               <label>Y-Offset</label>
               <input
                 type='number'
@@ -123,7 +123,7 @@ const TitleSettings = (props) => {
                 onChange={ props.onChange }
                 className='form-control' />
             </div>
-            <div className='col-xs-3'>
+            <div className='col-xs-5'>
               <label>Opacity</label>
               <input
                 type='range'
@@ -133,7 +133,7 @@ const TitleSettings = (props) => {
                 value={ settings.textShadowOpacity }
                 onChange={ props.onChange } />
             </div>
-            <div className='col-xs-3'>
+            <div className='col-xs-5'>
               <label>Blur</label>
               <input
                 type='range'
