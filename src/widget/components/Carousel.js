@@ -7,8 +7,18 @@ class Carousel extends React.Component {
   }
 
   createCarousel(items) {
-    if (this.carouselComponent) this.carouselComponent._destroySlider();
+    // Clean carousel if we already have one
+    if (this.carouselComponent) {
+      this.carouselComponent._destroySlider();
+      this.carousel.className = '';
+      this.carousel.innerHTML = '';
+      delete this.carouselComponent;
+    }
 
+    // Skip if we have no items
+    if (!items.length) return;
+
+    // Mount carousel
     this.carouselComponent = new components.carousel.view({
       selector: this.carousel, items
     });
@@ -18,22 +28,18 @@ class Carousel extends React.Component {
     buildfire.datastore.get('carousel', (err, result) => {
       if (err) return console.error(err);
       let { items } = result.data;
-      if (items && items.length > 0) {
-        this.createCarousel(items);
-      }
+      this.createCarousel(items);
     });
 
     buildfire.datastore.onUpdate(update => {
       if (update.tag !== 'carousel') return;
-      if (update.data.items && update.data.items.length > 0) {
-        this.createCarousel(update.data.items);
-      }
+      this.createCarousel(update.data.items);
     }, true);
   }
 
   render() {
     return (
-      <div ref={ node => this.carousel = node } />
+      <div id='carousel' ref={ node => this.carousel = node } />
     );
   }
 }
