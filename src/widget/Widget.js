@@ -17,7 +17,9 @@ class Widget extends React.Component {
     // Get plugin list
     buildfire.datastore.getWithDynamicData('plugins', (err, { data }) => {
       if (err) return console.error(err);
-      const plugins = data._buildfire.plugins.result.map(plugin => plugin.data);
+      const plugins = data._buildfire && data._buildfire.plugins
+        ? data._buildfire.plugins.result.map(plugin => plugin.data)
+        : [];
       this.setState({ plugins });
     });
   }

@@ -31,7 +31,9 @@ class PluginInstance extends React.Component {
     // Load existing plugins into the plugin sortable list
     buildfire.datastore.getWithDynamicData('plugins', (err, { data }) => {
       if (err) return console.error(err);
-      let plugins = data._buildfire.plugins.result.map(plugin => plugin.data);
+      let plugins = data._buildfire && data._buildfire.plugins
+        ? data._buildfire.plugins.result.map(plugin => plugin.data)
+        : [];
       this.plugins.loadItems(plugins);
     });
   }

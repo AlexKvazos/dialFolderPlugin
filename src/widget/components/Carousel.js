@@ -6,23 +6,34 @@ class Carousel extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.viewer = new components.carousel.view('#carousel');
+  createCarousel(items) {
+    if (this.carouselComponent) this.carouselComponent._destroySlider();
 
+    this.carouselComponent = new components.carousel.view({
+      selector: this.carousel, items
+    });
+  }
+
+  componentDidMount() {
     buildfire.datastore.get('carousel', (err, result) => {
       if (err) return console.error(err);
-      this.viewer.loadItems(result.data.items);
+      let { items } = result.data;
+      if (items && items.length > 0) {
+        this.createCarousel(items);
+      }
     });
 
     buildfire.datastore.onUpdate(update => {
       if (update.tag !== 'carousel') return;
-      this.viewer.loadItems(update.data.items);
+      if (update.data.items && update.data.items.length > 0) {
+        this.createCarousel(update.data.items);
+      }
     }, true);
   }
 
   render() {
     return (
-      <div id="carousel" />
+      <div ref={ node => this.carousel = node } />
     );
   }
 }

@@ -42,7 +42,7 @@ const WebpackConfig = {
   output: {
     path: path.join(__dirname, '../'),
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: 'http://0.0.0.0:8080/'
   },
 
   externals: {
@@ -113,9 +113,10 @@ const WebpackConfig = {
   ],
 
   devServer: {
-    hot: true,
     port: 8080,
+    hot: true,
     host: '0.0.0.0',
+    inline: true,
     contentBase: path.join(__dirname, '../'),
     publicPath: '/',
     quiet: false,
