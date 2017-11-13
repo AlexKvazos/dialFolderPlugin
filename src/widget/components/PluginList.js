@@ -10,11 +10,11 @@ class PluginList extends React.Component {
     return (
       <div>
         { plugins.map((item, index) => (
-            <div className='column' key={ index } >
-              <Lazy cushion={ 100 } height={ settings.itemSize }>
-                <ListItem item={ item } settings={ settings } />
-              </Lazy>
-            </div>
+          <div className='column' key={ index } >
+            <Lazy cushion={ 100 } height={ settings.itemSize }>
+              <ListItem item={ item } settings={ settings } />
+            </Lazy>
+          </div>
         )) }
       </div>
     );
@@ -22,3 +22,4 @@ class PluginList extends React.Component {
 }
 
 export default PluginList;
+

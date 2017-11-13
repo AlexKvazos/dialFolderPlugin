@@ -16,7 +16,7 @@ class Carousel extends React.Component {
     }
 
     // Skip if we have no items
-    if (!items.length) return;
+    if (!items || !items.length) return;
 
     // Mount carousel
     this.carouselComponent = new components.carousel.view({
