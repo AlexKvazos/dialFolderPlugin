@@ -11,7 +11,7 @@ class PluginList extends React.Component {
       <div>
         { plugins.map((item, index) => (
             <div className='column' key={ index } >
-              <Lazy height={ settings.itemSize }>
+              <Lazy cushion={ 100 } height={ settings.itemSize }>
                 <ListItem item={ item } settings={ settings } />
               </Lazy>
             </div>
