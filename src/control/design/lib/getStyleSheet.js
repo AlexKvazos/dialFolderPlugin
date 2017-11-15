@@ -26,7 +26,7 @@ export default function getStyleSheet(settings) {
   return `
   ${settings.backgroundImage ? `
   body {
-    background-image: url(${settings.backgroundImage}) !important;
+    background-image: url(url(https://czi3m2qn.cloudimg.io/s/width/750/${settings.backgroundImage}) !important;
     background-size: cover !important;
     background-position: center !important;
   }
@@ -37,7 +37,7 @@ export default function getStyleSheet(settings) {
     body {
       background-size: cover;
       background-position: center;
-      background-image: url(${settings.backgroundImageLarge});
+      background-image: url(url(https://czi3m2qn.cloudimg.io/s/width/1500/${settings.backgroundImageLarge});
     }
   }
   ` : ''}
