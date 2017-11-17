@@ -26,18 +26,20 @@ export default function getStyleSheet(settings) {
   return `
   ${settings.backgroundImage ? `
   body {
-    background-image: url(url(https://czi3m2qn.cloudimg.io/s/width/750/${settings.backgroundImage}) !important;
+    background-image: url(https://czi3m2qn.cloudimg.io/s/width/750/${settings.backgroundImage}) !important;
     background-size: cover !important;
     background-position: center !important;
+    background-attachment: fixed;
   }
   ` : ''}
 
   ${settings.backgroundImageLarge ? `
   @media (min-width: 1500px) {
     body {
-      background-size: cover;
-      background-position: center;
-      background-image: url(url(https://czi3m2qn.cloudimg.io/s/width/1500/${settings.backgroundImageLarge});
+      background-image: url(https://czi3m2qn.cloudimg.io/s/width/1500/${settings.backgroundImageLarge});
+      background-size: cover !important;
+      background-position: center !important;
+      background-attachment: fixed !important;
     }
   }
   ` : ''}
