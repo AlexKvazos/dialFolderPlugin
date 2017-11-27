@@ -3,34 +3,35 @@ import React from 'react';
 import debounce from '../lib/debounce';
 
 class Editor extends React.Component {
-  constructor(props) {
-    super(props);
+
+  componentWillMount() {
+    this.fetchData = new Promise((resolve, reject) => {
+      buildfire.datastore.get((err, { data }) => {
+        if (err) return reject(err);
+        this.setState(data);
+        resolve();
+      });
+    });
   }
 
   componentDidMount() {
     window.tinymce.init({
       selector: '#editor',
-      setup: this.setupEditor
-    });
-  }
+      setup: (editor) => {
 
-  setupEditor = (editor) => {
-    // Load existing html contents
-    buildfire.datastore.get('html', (err, result) => {
-      if (err) return console.error(err);
-      if (result.data.content) {
-        editor.setContent(result.data.content);
+        // Bind editor change/keyup events to save
+        editor.on('keyup change', (e) => {
+          const content = editor.getContent();
+          this.handleSave(content);
+        });
+
+        // Set content from async data
+        this.fetchData.then(() => {
+          if (this.state.wysiwyg) {
+            editor.setContent(this.state.wysiwyg.content);
+          }
+        });
       }
-
-      // Bind editor change/keyup events to save
-      editor.on('keyup', (e) => {
-        const content = editor.getContent();
-        this.handleSave(content);
-      });
-      editor.on('change', (e) => {
-        const content = editor.getContent();
-        this.handleSave(content);
-      });
     });
   }
 
@@ -39,7 +40,11 @@ class Editor extends React.Component {
    * debounce any calls made if it was called less than 600ms ago.
    */
   handleSave = debounce((content) => {
-    buildfire.datastore.save({ content }, 'html');
+    const wysiwyg = { content };
+    this.setState({ wysiwyg });
+    buildfire.datastore.save(this.state, err => {
+      if (err) return console.error(err);
+    });
   }, 600);
 
   render() {

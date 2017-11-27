@@ -1,10 +1,17 @@
 import buildfire, { components } from 'buildfire';
 import React from 'react';
+import debounce from '../lib/debounce';
 
 class PluginInstance extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+
+  componentWillMount() {
+    this.fetchData = new Promise((resolve, reject) => {
+      buildfire.datastore.getWithDynamicData((err, { data }) => {
+        if (err) return reject(err);
+        this.setState(data);
+        resolve();
+      });
+    });
   }
 
   componentDidMount() {
@@ -28,30 +35,33 @@ class PluginInstance extends React.Component {
     this.plugins.onLoadAll = () => this.save();
     this.plugins.onUnloadAll = () => this.save();
 
-    // Load existing plugins into the plugin sortable list
-    buildfire.datastore.getWithDynamicData('plugins', (err, { data }) => {
-      if (err) return console.error(err);
-      let plugins = data._buildfire && data._buildfire.plugins
-        ? data._buildfire.plugins.result.map(plugin => plugin.data)
+    this.fetchData.then(() => {
+      let plugins =
+        this.state.plugins &&
+        this.state.plugins._buildfire &&
+        this.state.plugins._buildfire.plugins
+        ? this.state.plugins._buildfire.plugins.result.map(plugin => plugin.data)
         : [];
       this.plugins.loadItems(plugins);
     });
   }
 
-  save() {
+  save = debounce(() => {
     // Buildfire dynamic data object
     // @see https://github.com/BuildFire/sdk/wiki/How-to-use-the-Datastore-Dynamic-Data#data-structure
     let _buildfire = {
       plugins: {
-        data: this.plugins.items.map(plugin => plugin.instanceId), // Only get instanceId
+        data: this.plugins.items.map(plugin => plugin.instanceId),
         dataType: 'pluginInstance'
       }
     };
 
-    buildfire.datastore.save({ _buildfire }, 'plugins', err => {
+    const plugins = { _buildfire };
+    this.setState({ plugins });
+    buildfire.datastore.save(this.state, err => {
       if (err) return console.error(err);
     });
-  }
+  }, 600)
 
   render() {
     return (

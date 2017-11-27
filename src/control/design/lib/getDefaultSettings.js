@@ -14,7 +14,7 @@ export default function getDefaultSettings() {
     overlayOpacity: 30,
 
     showTitles: true,
-    titleColor: '#ffffff',
+    titleColor: '#000000',
     fontSize: 26,
     fontWeight: 400,
     titleVerticalAlign: 'top',

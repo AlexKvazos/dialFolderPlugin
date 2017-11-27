@@ -19,17 +19,17 @@ class Design extends React.Component {
    * default settings if none exist.
    */
   componentWillMount() {
-    buildfire.datastore.get('settings', (err, {data}) => {
+    buildfire.datastore.get((err, {data}) => {
       if (err) return console.error(err);
 
       // Save default settings if none has been saved
-      if (!data.css) {
-        const settings = getDefaultSettings();
-        this.setState({ settings });
-        this.handleSave(settings);
+      if (!data.settings || !data.settings.css) {
+        data.settings = getDefaultSettings();
+        this.setState(data);
+        this.handleSave();
       }
 
-      this.setState({ settings: data });
+      this.setState(data);
     });
   }
 
@@ -41,7 +41,6 @@ class Design extends React.Component {
   onPresetSelect = preset => {
     const settings = Object.assign({}, preset);
     settings.css = getStyleSheet(preset);
-    buildfire.datastore.save(settings, 'settings');
     this.setState({ settings });
   };
 
@@ -66,7 +65,7 @@ class Design extends React.Component {
       return prevState;
     });
 
-    this.handleSave(this.state.settings);
+    this.handleSave();
   };
 
   /**
@@ -74,9 +73,13 @@ class Design extends React.Component {
    * the datastore. This function will debounce any calls made
    * if it was called less than 600ms ago.
    */
-  handleSave = debounce((settings) => {
+  handleSave = debounce(() => {
+    const { settings } = this.state;
     settings.css = getStyleSheet(settings);
-    buildfire.datastore.save(settings, 'settings');
+    this.setState({ settings });
+    buildfire.datastore.save(this.state, err => {
+      if (err) return console.error(err);
+    });
   }, 600);
 
   render() {

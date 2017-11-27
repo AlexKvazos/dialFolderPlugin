@@ -1,9 +1,12 @@
-import buildfire, { components } from 'buildfire';
+import { components } from 'buildfire';
 import React from 'react';
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      items: []
+    };
   }
 
   createCarousel(items) {
@@ -24,22 +27,28 @@ class Carousel extends React.Component {
     });
   }
 
+  componentWillMount() {
+    // Get 16:9 ratio height in px
+    this.setState({ height: window.innerWidth * .5625 });
+  }
+
   componentDidMount() {
-    buildfire.datastore.get('carousel', (err, result) => {
-      if (err) return console.error(err);
-      let { items } = result.data;
+    this.props.fetchData.then(data => {
+      if (!data.carousel) return;
+      let { items } = data.carousel;
+      this.setState({ items });
       this.createCarousel(items);
     });
-
-    buildfire.datastore.onUpdate(update => {
-      if (update.tag !== 'carousel') return;
-      this.createCarousel(update.data.items);
-    }, true);
   }
 
   render() {
+
     return (
-      <div id='carousel' ref={ node => this.carousel = node } />
+      <div style={{ height: this.state.items.length ? `${this.state.height}px` : 0 }}>
+        <div
+          id='carousel'
+          ref={ node => this.carousel = node } />
+      </div>
     );
   }
 }

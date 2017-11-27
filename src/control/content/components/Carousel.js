@@ -1,40 +1,42 @@
 import buildfire, { components } from 'buildfire';
 import React from 'react';
+import debounce from '../lib/debounce';
 
 class Carousel extends React.Component {
-  constructor(props) {
-    super(props);
+
+  componentWillMount() {
+    this.fetchData = new Promise((resolve, reject) => {
+      buildfire.datastore.get((err, { data }) => {
+        if (err) return reject(err);
+        this.setState(data);
+        resolve();
+      });
+    });
   }
 
-  /**
-   * Mount the carousel into the view and load plugins
-   */
   componentDidMount() {
     this.editor = new components.carousel.editor('#carousel');
     this.editor.onAddItems = (items) => this.handleSave();
     this.editor.onDeleteItem = (item, index) => this.handleSave();
     this.editor.onItemChange = (item) => this.handleSave();
     this.editor.onOrderChange = (item, prevIndex, newIndex) => this.handleSave();
-    this.getCarouselItems();
-  }
-
-  /**
-   * Get plugin list and load them into the carousel
-   */
-  getCarouselItems() {
-    buildfire.datastore.get('carousel', (err, result) => {
-      if (err) return console.error(err);
-      this.editor.loadItems(result.data.items);
+    this.fetchData.then(() => {
+      if (this.state.carousel) {
+        this.editor.loadItems(this.state.carousel.items);
+      }
     });
   }
 
   /**
    * Handle saving the contents of the carousel editor
    */
-  handleSave = () => {
-    const data = { items: this.editor.items };
-    buildfire.datastore.save(data, 'carousel');
-  }
+  handleSave = debounce(() => {
+    const carousel = { items: this.editor.items };
+    this.setState({ carousel });
+    buildfire.datastore.save(this.state, err => {
+      if (err) return console.error(err);
+    });
+  }, 600);
 
   render() {
     return (

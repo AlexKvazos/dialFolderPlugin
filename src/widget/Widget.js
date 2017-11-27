@@ -4,55 +4,28 @@ import Carousel from './components/Carousel';
 import PluginList from './components/PluginList';
 
 class Widget extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      plugins: [],
-      html: ''
-    };
-  }
-
-  getPluginList() {
-    // Get plugin list
-    buildfire.datastore.getWithDynamicData('plugins', (err, { data }) => {
-      if (err) return console.error(err);
-      const plugins = data._buildfire && data._buildfire.plugins
-        ? data._buildfire.plugins.result.map(plugin => plugin.data)
-        : [];
-      this.setState({ plugins });
-    });
-  }
 
   componentWillMount() {
-    // Get settings
-    buildfire.datastore.get('settings', (err, {data}) => {
-      if (err) return console.error('Error loading layout');
-      this.setState({ settings: data });
+    this.props.fetchData.then(data => {
+      this.setState(data);
     });
+  }
 
-    // Get html content
-    buildfire.datastore.get('html', (err, {data}) => {
-      if (err) return console.error('Error loading layout');
-      this.setState({ html: data.content });
+  updateData() {
+    buildfire.datastore.getWithDynamicData((err, { data }) => {
+      if (err) return console.error(err);
+
+      data.plugins = data.plugins._buildfire && data.plugins._buildfire.plugins
+        ? data.plugins._buildfire.plugins.result.map(plugin => plugin.data)
+        : [];
+
+      this.setState(data);
     });
-
-    this.getPluginList();
   }
 
   componentDidMount() {
-    this.dataListener = buildfire.datastore.onUpdate(update => {
-      switch (update.tag) {
-        case 'settings':
-          this.setState({ settings: update.data });
-          break;
-        case 'html':
-          this.setState({ html: update.data.content });
-          break;
-        case 'plugins':
-          this.getPluginList();
-          break;
-      }
+    this.dataListener = buildfire.datastore.onUpdate(() => {
+      this.updateData();
     }, true);
   }
 
@@ -61,14 +34,17 @@ class Widget extends React.Component {
   }
 
   render() {
-    const { settings, html, plugins } = this.state;
+    const { settings, wysiwyg, plugins } = this.state;
+
     if (!settings) return null;
 
     return (
       <div>
         <style>{ settings.css }</style>
-        <Carousel />
-        { html && html.length ? <div dangerouslySetInnerHTML={{ __html: html }} /> : null }
+        <Carousel fetchData={ this.props.fetchData } />
+        { wysiwyg && wysiwyg.content && wysiwyg.content.length
+            ? <div dangerouslySetInnerHTML={{ __html: wysiwyg.content }} />
+            : null }
         <PluginList plugins={ plugins } settings={ settings } />
       </div>
     );
