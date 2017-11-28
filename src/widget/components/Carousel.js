@@ -1,4 +1,4 @@
-import { components } from 'buildfire';
+import buildfire, { components } from 'buildfire';
 import React from 'react';
 
 class Carousel extends React.Component {
@@ -32,6 +32,14 @@ class Carousel extends React.Component {
     this.setState({ height: window.innerWidth * .5625 });
   }
 
+  updateData() {
+    buildfire.datastore.get((err, { data }) => {
+      if (err) return console.error(err);
+      this.setState({ items: data.carousel.items });
+      this.createCarousel(data.carousel.items);
+    });
+  }
+
   componentDidMount() {
     this.props.fetchData.then(data => {
       if (!data.carousel) return;
@@ -39,6 +47,14 @@ class Carousel extends React.Component {
       this.setState({ items });
       this.createCarousel(items);
     });
+
+    this.dataListener = buildfire.datastore.onUpdate(() => {
+      this.updateData();
+    }, true);
+  }
+
+  componentWillUnmount() {
+    this.dataListener.clear();
   }
 
   render() {
